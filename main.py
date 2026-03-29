@@ -32,6 +32,8 @@ async def process_file(request: Request, sender_email: Annotated[str, Query(titl
     df = pd.read_excel(io.BytesIO(contents), header=None)
     try:
         data = dispatch(sender_email=sender_email, df=df)
+        for record in data:
+             record["date_received"] = date_received
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     return data
