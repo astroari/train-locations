@@ -34,6 +34,7 @@ async def process_file(request: Request, sender_email: Annotated[str, Query(titl
         data = dispatch(sender_email=sender_email, df=df)
         for record in data:
              record["date_received"] = date_received
+             record["sender_email"] = sender_email
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     return data
