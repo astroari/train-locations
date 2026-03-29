@@ -1,5 +1,5 @@
 from fastapi import FastAPI, Request, HTTPException, Query
-from typing import Annotated
+from typing_extensions import Annotated
 import pandas as pd
 import io
 from extractors import *
