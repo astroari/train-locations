@@ -32,6 +32,7 @@ def parse_eurologistic(df): # inform@eurologistic.su
     data.rename(columns=columns_mapper, inplace=True)
     data = data[["wagon_number", "current_location_station", "remaining_distance", "destination_station"]]
     data.fillna(value={"remaining_distance": 0}, inplace=True)
+    data = data.replace({float('nan'): None})
 
     return data.to_dict(orient="records")
 
@@ -53,6 +54,7 @@ def parse_railsoft(df): # stg-host-6@railsoft.ru
     data.rename(columns=columns_mapper, inplace=True)
     data = data[["wagon_number", "current_location_station", "remaining_distance", "destination_station"]]
     data.fillna(value={"remaining_distance": 0}, inplace=True)
+    data = data.replace({float('nan'): None})
 
     return data.to_dict(orient="records")
 
@@ -74,6 +76,7 @@ def parse_incomtrans(df): # disl@incomtrans.su
     data.rename(columns=columns_mapper, inplace=True)
     data = data[["wagon_number", "current_location_station", "remaining_distance", "destination_station"]]
     data.fillna(value={"remaining_distance": 0}, inplace=True)
+    data = data.replace({float('nan'): None})
 
     return data.to_dict(orient="records")
 
@@ -95,6 +98,7 @@ def parse_ilsi(df): # disl@ilsi.pro
     data.rename(columns=columns_mapper, inplace=True)
     data = data[["wagon_number", "current_location_station", "remaining_distance", "destination_station"]]
     data.fillna(value={"remaining_distance": 0}, inplace=True)
+    data = data.replace({float('nan'): None})
 
     return data.to_dict(orient="records")
 
@@ -117,5 +121,6 @@ def parse_ultradecor(df): # e.mironova@ultradecor.com
     data.rename(columns=columns_mapper, inplace=True)
     data = data[["wagon_number", "current_location_station", "remaining_distance", "destination_station"]]
     data.fillna(value={"remaining_distance": 0}, inplace=True)
-    
+    data = data.replace({float('nan'): None})
+
     return data.to_dict(orient="records")
