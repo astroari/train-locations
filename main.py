@@ -28,11 +28,12 @@ def home():
 
 @app.post("/process")
 async def process_file(request: Request, sender_email: Annotated[str, Query(title="Sender Email")], date_received: Annotated[str, Query(title="Date Received")], file_extension: Annotated[str, Query(title="File Extension")]):
+    contents = await request.body()  
+
     ext = file_extension.lower()
     if ext not in ("xlsx", "xls"):
         return {"skipped": True, "reason": f"Not an Excel file: .{ext}"}
 
-    contents = await request.body()  # bytes
     df = pd.read_excel(io.BytesIO(contents), header=None)
     try:
         data = dispatch(sender_email=sender_email, df=df)
